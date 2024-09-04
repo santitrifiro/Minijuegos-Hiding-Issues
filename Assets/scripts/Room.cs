@@ -19,6 +19,7 @@ public class Room : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.name);
         if (other.TryGetComponent<Player>(out Player player))
         {
             player.EnteredRoom(this);
@@ -27,6 +28,7 @@ public class Room : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log(other.name);
         if (other.TryGetComponent<Player>(out Player player))
         {
             player.ExitedRoom(this);
