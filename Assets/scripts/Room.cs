@@ -6,37 +6,30 @@ public class Room : MonoBehaviour
 {
 
     public int SecurityPercentage;
-    public Vector3 center;
-    public Vector3 size;
-    private bool HasPlayerInside;
-    private Vector3 PlayerPosition;
-
-    private Vector3 trueCenter;
-    private Vector3 trueSize;
+    public BoxCollider box;
+    private List<Player> PlayersInside;
 
     // Start is called before the first frame update
     void Start()
     {
-        trueCenter = transform.position + center; 
-        trueSize = Vector3.Scale(Vector3.Scale(transform.localScale, size), new Vector3(0.5f, 0.5f, 0.5f));
+        box.isTrigger = true;
+        PlayersInside = new List<Player>();
         return;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("HasPlayerInside = " + HasPlayerInside);
-        Collider[] hitColliders = Physics.OverlapBox(trueCenter, trueSize);
-        for (int i = 0; i < hitColliders.Length; i++)
+        if (other.TryGetComponent<Player>(out Player player))
         {
-            if (hitColliders[i].TryGetComponent<Player>(out var component))
-            {
-                HasPlayerInside = true;
-                PlayerPosition = component.transform.position;
-                return;
-            }
+            player.EnteredRoom(this);
         }
+    }
 
-        HasPlayerInside = false;
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent<Player>(out Player player))
+        {
+            player.ExitedRoom(this);
+        }
     }
 }
