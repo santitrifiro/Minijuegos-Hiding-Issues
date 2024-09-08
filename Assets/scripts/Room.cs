@@ -7,20 +7,20 @@ public class Room : MonoBehaviour
 
     public int SecurityPercentage;
     public BoxCollider box;
-    private List<Player> PlayersInside;
 
     // Start is called before the first frame update
     void Start()
     {
         box.isTrigger = true;
-        PlayersInside = new List<Player>();
         return;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.name);
-        if (other.TryGetComponent<Player>(out Player player))
+        Player player = other.GetComponentInParent<Player>();
+
+        if (player != null)
         {
             player.EnteredRoom(this);
         }
@@ -28,8 +28,10 @@ public class Room : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log(other.name);
-        if (other.TryGetComponent<Player>(out Player player))
+        Debug.Log(other);
+        Player player = other.GetComponentInParent<Player>();
+
+        if (player != null)
         {
             player.ExitedRoom(this);
         }
