@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
-  productGUID: 774bb0c1c0dbb624cbf9ed3886a45335
+  productGUID: d6981c36d1e06034d86bdeabdb9852b4
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: Hiding Issues
+  productName: Juego
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -677,14 +677,14 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Hiding Issues
+  metroPackageName: Juego
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: Hiding Issues
+  metroApplicationDescription: Juego
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -752,13 +752,13 @@ PlayerSettings:
   hmiLogStartupTiming: 0
   hmiCpuConfiguration: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 2
+  activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: c8561dfb-3df6-4d15-b1ff-776f328d4165
+  cloudProjectId: a249dfa4-f39f-4229-bbea-45eb4712c228
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Hiding Issues 2024-08-26_08-51-02
-  organizationId: cammi321
+  projectName: Juego
+  organizationId: juanivarisco
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
