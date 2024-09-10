@@ -12,7 +12,6 @@ public enum Character
     Walter
 }
 
-
 public class Player : MonoBehaviour
 {
 
@@ -40,7 +39,7 @@ public class Player : MonoBehaviour
 
 
     private Room currentRoom;
-    private Canvas overlay;
+    private PlayerOverlay overlay;
     private bool hiding = false;
     private List<Room> SolvedRooms = new List<Room>();
 
@@ -67,7 +66,7 @@ public class Player : MonoBehaviour
         playerMovement.MaxSpeed = MaxSpeed;
         playerMovement.rb = rb;
 
-        overlay = this.GetComponentInChildren<Canvas>();
+        overlay = this.GetComponentInChildren<PlayerOverlay>();
         return;
     }
 
@@ -90,7 +89,7 @@ public class Player : MonoBehaviour
             if (currentRoom != null && !SolvedRooms.Contains(currentRoom))
             {
                 SolvedRooms.Add(currentRoom);
-                overlay.GetComponentInChildren<SecurityPercentageUI>().SetSecurityPercentage(currentRoom.SecurityPercentage);
+                overlay.SetSecurityPercentage(currentRoom.SecurityPercentage);
             }
         }
     }
@@ -100,7 +99,7 @@ public class Player : MonoBehaviour
         if (currentRoom != null)
         {
             Debug.Log("Te escondess en " + currentRoom.name);
-            overlay.GetComponentInChildren<Fade2Black>().SlowFade();
+            overlay.Fade();
             hiding = true;
         }
     }
@@ -108,26 +107,23 @@ public class Player : MonoBehaviour
     void StopHiding()
     {
         Debug.Log("Salis del escondite ");
-        overlay.GetComponentInChildren<Fade2Black>().ResetFade();
+        overlay.ResetFade();
         hiding = false;
     }
 
     public void EnteredRoom(Room room)
     {
-        if (SolvedRooms.Contains(room))
-        {
-            overlay.GetComponentInChildren<SecurityPercentageUI>().SetSecurityPercentage(room.SecurityPercentage);
-        } else
-        {
-            overlay.GetComponentInChildren<SecurityPercentageUI>().UnknownSecurityPercentage();
-        }
+        overlay.SetSecurityPercentage(SolvedRooms.Contains(room) ? room.SecurityPercentage : null);
         currentRoom = room;
     }
 
     public void ExitedRoom(Room room)
     {
-        overlay.GetComponentInChildren<SecurityPercentageUI>().VoidSecurityPercentage();
-        currentRoom = room == currentRoom ? null : currentRoom;
+        if (currentRoom == room)
+        {
+            overlay.VoidSecurityPercentage();
+            currentRoom = null;
+        }
     }
 
     public bool IsHiding()
