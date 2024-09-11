@@ -7,8 +7,8 @@ using UnityEngine;
 public abstract class Puzzle : MonoBehaviour
 {
     private Room room;
-    // Start is called before the first frame update
-    void Start()
+
+    protected void StartPuzzle()
     {
         room = this.GetComponent<Room>();
     }
