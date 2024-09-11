@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Coleccionable
+  - Minutos
+  - Horas
+  - fuego1
+  - fuego2
+  - fuego3
+  - fuego4
+  - perilla1
+  - perilla2
+  - perilla3
+  - perilla4
+  - luz1
+  - luz2
+  - luz3
+  - luz4
+  - luz5
+  - luz6
+  - luz7
+  - luz8
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
