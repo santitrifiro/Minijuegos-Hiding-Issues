@@ -123,6 +123,18 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void UpdateRoom(Room room) 
+    {
+        if (currentRoom == room)
+        {
+            Debug.Log("BruhBruh");
+            overlay.SetSecurityPercentage(room.GetSecurityPercentage());
+        } else
+        {
+            Debug.Log("Bruh");
+        } 
+    }
+
     public bool IsHiding()
     {
         return hiding;

@@ -10,6 +10,8 @@ public class Room : MonoBehaviour
     public BoxCollider box;
 
     private bool isPercentageRevealed = false;
+    private bool isRevealed = false;
+    private bool __reveal_next_iteration = false;
 
     // Start is called before the first frame update
     void Start()
@@ -40,9 +42,24 @@ public class Room : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (__reveal_next_iteration)
+        {
+            Player player = other.GetComponentInParent<Player>();
+            if (player != null)
+            {
+                player.UpdateRoom(this);
+                __reveal_next_iteration = false;
+            }
+        }
+    }
+
     public void RevealSecurityPercentage()
     {
+        Debug.Log("lol");
         isPercentageRevealed = true;
+        __reveal_next_iteration = true;
     }
 
     public int? GetSecurityPercentage()

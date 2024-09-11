@@ -28,18 +28,21 @@ public class BathroomPiecesPuzzle : Puzzle
 
     public override void HandleComponentInteracted(PuzzleInteractable interactable)
     {
-        if (interactable == toiletInteractable)
+        Debug.Log("");
+        GameObject interacted_obj = interactable.gameObject;
+
+        if (interacted_obj == ToiletModel)
         {
             toiletInteracted = true;
-        } else if (interactable == sinkInteractable)
+        } else if (interacted_obj == SinkModel)
         {
             sinkInteracted = true;
-        } else if (interactable == showerInteractable)
+        } else if (interacted_obj == ShowerModel)
         {
             showerInteracted = true;
         }
-        bool isFinished = toiletInteracted && sinkInteracted && showerInteracted;
 
+        bool isFinished = toiletInteracted && sinkInteracted && showerInteracted;
         if (isFinished)
         {
             base.OnSolve();
