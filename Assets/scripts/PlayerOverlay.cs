@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static System.Net.Mime.MediaTypeNames;
 
+[RequireComponent(typeof(Canvas))]
 public class PlayerOverlay : MonoBehaviour
 {
 
@@ -14,7 +15,7 @@ public class PlayerOverlay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Canvas canvas = this.AddComponent<Canvas>();
+        Canvas canvas = this.GetComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         CanvasScaler scaler = this.AddComponent<CanvasScaler>();
         GraphicRaycaster raycaster = this.AddComponent<GraphicRaycaster>();
@@ -32,10 +33,11 @@ public class PlayerOverlay : MonoBehaviour
         fadeComponent.ResetFade();
     }
 
-    public void SetSecurityPercentage(Nullable<int> newPercentage)
+    public void SetSecurityPercentage(int? newPercentage)
     {
-        if (newPercentage != null)
+        if (newPercentage.HasValue)
         {
+            Debug.Log("hi" + newPercentage);
             securityComponent.SetSecurityPercentage(newPercentage.Value);
         } else
         {
