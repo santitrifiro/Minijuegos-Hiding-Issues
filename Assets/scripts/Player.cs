@@ -37,6 +37,9 @@ public class Player : MonoBehaviour
     [Header("Player Movement")]
     public float MaxSpeed = 70;
 
+    [Header("Player Look At")]
+    public Camera cam;
+
 
     private Room currentRoom;
     private PlayerOverlay overlay;
@@ -66,6 +69,9 @@ public class Player : MonoBehaviour
         playerMovement.MaxSpeed = MaxSpeed;
         playerMovement.rb = rb;
 
+        PlayerLookAt playerLookAt = this.AddComponent<PlayerLookAt>();
+        playerLookAt.CameraComponent = cam;
+
         overlay = this.GetComponentInChildren<PlayerOverlay>();
         return;
     }
@@ -73,7 +79,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E)) {
+        if(Input.GetKeyDown(KeyCode.U)) {
             if(hiding)
             {
                 StopHiding();

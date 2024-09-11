@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Room))]
 public abstract class Puzzle : MonoBehaviour
 {
+
     private Room room;
 
     protected void StartPuzzle()
@@ -13,8 +14,10 @@ public abstract class Puzzle : MonoBehaviour
         room = this.GetComponent<Room>();
     }
 
-    void OnSolve()
+    protected void OnSolve()
     {
         room.RevealSecurityPercentage();
     }
+
+    public abstract void HandleComponentInteracted(PuzzleInteractable interactable);
 }

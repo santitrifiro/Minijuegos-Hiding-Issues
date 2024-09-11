@@ -6,7 +6,7 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
 
-    public int SecurityPercentage { set; private get; }
+    public int SecurityPercentage;
     public BoxCollider box;
 
     private bool isPercentageRevealed = false;
@@ -45,7 +45,7 @@ public class Room : MonoBehaviour
         isPercentageRevealed = true;
     }
 
-    public Nullable<int> GetSecurityPercentage()
+    public int? GetSecurityPercentage()
     {
         if (isPercentageRevealed)
         {

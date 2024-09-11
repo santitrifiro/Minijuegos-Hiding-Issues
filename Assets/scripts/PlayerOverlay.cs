@@ -32,10 +32,11 @@ public class PlayerOverlay : MonoBehaviour
         fadeComponent.ResetFade();
     }
 
-    public void SetSecurityPercentage(Nullable<int> newPercentage)
+    public void SetSecurityPercentage(int? newPercentage)
     {
-        if (newPercentage != null)
+        if (newPercentage.HasValue)
         {
+            Debug.Log("hi" + newPercentage);
             securityComponent.SetSecurityPercentage(newPercentage.Value);
         } else
         {
