@@ -83,15 +83,6 @@ public class Player : MonoBehaviour
                 Hide();
             }
         }
-
-        if(Input.GetKeyDown(KeyCode.S))
-        {
-            if (currentRoom != null && !SolvedRooms.Contains(currentRoom))
-            {
-                SolvedRooms.Add(currentRoom);
-                overlay.SetSecurityPercentage(currentRoom.SecurityPercentage);
-            }
-        }
     }
 
     void Hide()
@@ -113,7 +104,7 @@ public class Player : MonoBehaviour
 
     public void EnteredRoom(Room room)
     {
-        overlay.SetSecurityPercentage(SolvedRooms.Contains(room) ? room.SecurityPercentage : null);
+        overlay.SetSecurityPercentage(room.GetSecurityPercentage());
         currentRoom = room;
     }
 

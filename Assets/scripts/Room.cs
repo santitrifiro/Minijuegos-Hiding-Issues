@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,10 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
 
-    public int SecurityPercentage;
+    public int SecurityPercentage { set; private get; }
     public BoxCollider box;
+
+    private bool isPercentageRevealed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,5 +38,26 @@ public class Room : MonoBehaviour
         {
             player.ExitedRoom(this);
         }
+    }
+
+    public void RevealSecurityPercentage()
+    {
+        isPercentageRevealed = true;
+    }
+
+    public Nullable<int> GetSecurityPercentage()
+    {
+        if (isPercentageRevealed)
+        {
+            return SecurityPercentage;
+        } else
+        {
+            return null;
+        }
+    }
+
+    public bool IsSecurityPercentageRevealed()
+    {
+        return isPercentageRevealed;
     }
 }
