@@ -12,7 +12,6 @@ public enum Character
     Walter
 }
 
-
 public class Player : MonoBehaviour
 {
 
@@ -38,10 +37,13 @@ public class Player : MonoBehaviour
     [Header("Player Movement")]
     public float MaxSpeed = 70;
 
+    [Header("Player Look At")]
+    public Camera cam;
+
 
     private Room currentRoom;
-    private Canvas overlay;
-    public bool hiding = false;
+    private PlayerOverlay overlay;
+    private bool hiding = false;
     private List<Room> SolvedRooms = new List<Room>();
 
     // Start is called before the first frame update
@@ -67,14 +69,17 @@ public class Player : MonoBehaviour
         playerMovement.MaxSpeed = MaxSpeed;
         playerMovement.rb = rb;
 
-        overlay = this.GetComponentInChildren<Canvas>();
+        PlayerLookAt playerLookAt = this.AddComponent<PlayerLookAt>();
+        playerLookAt.CameraComponent = cam;
+
+        overlay = this.GetComponentInChildren<PlayerOverlay>();
         return;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E)) {
+        if(Input.GetKeyDown(KeyCode.U)) {
             if(hiding)
             {
                 StopHiding();
@@ -84,15 +89,6 @@ public class Player : MonoBehaviour
                 Hide();
             }
         }
-
-        if(Input.GetKeyDown(KeyCode.S))
-        {
-            if (currentRoom != null && !SolvedRooms.Contains(currentRoom))
-            {
-                SolvedRooms.Add(currentRoom);
-                overlay.GetComponentInChildren<SecurityPercentageUI>().SetSecurityPercentage(currentRoom.SecurityPercentage);
-            }
-        }
     }
 
     void Hide()
@@ -100,7 +96,7 @@ public class Player : MonoBehaviour
         if (currentRoom != null)
         {
             Debug.Log("Te escondess en " + currentRoom.name);
-            overlay.GetComponentInChildren<Fade2Black>().SlowFade();
+            overlay.Fade();
             hiding = true;
         }
     }
@@ -108,26 +104,31 @@ public class Player : MonoBehaviour
     void StopHiding()
     {
         Debug.Log("Salis del escondite ");
-        overlay.GetComponentInChildren<Fade2Black>().ResetFade();
+        overlay.ResetFade();
         hiding = false;
     }
 
     public void EnteredRoom(Room room)
     {
-        if (SolvedRooms.Contains(room))
-        {
-            overlay.GetComponentInChildren<SecurityPercentageUI>().SetSecurityPercentage(room.SecurityPercentage);
-        } else
-        {
-            overlay.GetComponentInChildren<SecurityPercentageUI>().UnknownSecurityPercentage();
-        }
+        overlay.SetSecurityPercentage(room.GetSecurityPercentage());
         currentRoom = room;
     }
 
     public void ExitedRoom(Room room)
     {
-        overlay.GetComponentInChildren<SecurityPercentageUI>().VoidSecurityPercentage();
-        currentRoom = room == currentRoom ? null : currentRoom;
+        if (currentRoom == room)
+        {
+            overlay.VoidSecurityPercentage();
+            currentRoom = null;
+        }
+    }
+
+    public void UpdateRoom(Room room) 
+    {
+        if (currentRoom == room)
+        {
+            overlay.SetSecurityPercentage(room.GetSecurityPercentage());
+        }
     }
 
     public bool IsHiding()
@@ -139,28 +140,5 @@ public class Player : MonoBehaviour
     {
         return currentRoom;
     }
-
-    public void Immobilize()
-    {
-        PlayerMovement playerMovement = GetComponent<PlayerMovement>();
-
-        if (playerMovement != null)
-        {
-            playerMovement.enabled = false;  // Desactiva el movimiento
-            Debug.Log("Movimiento deshabilitado.");
-        }
-    }
-
-    public void Mobilize()
-    {
-        PlayerMovement playerMovement = GetComponent<PlayerMovement>();
-
-        if (playerMovement != null)
-        {
-            playerMovement.enabled = true;  // Activa nuevamente el movimiento
-            Debug.Log("Movimiento habilitado.");
-        }
-    }
-
 
 }
