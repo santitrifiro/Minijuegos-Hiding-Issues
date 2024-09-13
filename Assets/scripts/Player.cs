@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum Character
 {
@@ -43,7 +44,7 @@ public class Player : MonoBehaviour
 
     private Room currentRoom;
     private PlayerOverlay overlay;
-    private bool hiding = false;
+    public bool hiding = false;
     private List<Room> SolvedRooms = new List<Room>();
 
     // Start is called before the first frame update
@@ -88,6 +89,12 @@ public class Player : MonoBehaviour
             {
                 Hide();
             }
+        }
+        //esto es para probar el reset
+        if(Input.GetKeyDown(KeyCode.M)) {
+            SceneManager.LoadScene("GameOver");
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 
@@ -139,6 +146,28 @@ public class Player : MonoBehaviour
     public Room GetCurrentRoom()
     {
         return currentRoom;
+    }
+
+    public void Immobilize()
+    {
+        PlayerMovement playerMovement = GetComponent<PlayerMovement>();
+
+        if (playerMovement != null)
+        {
+            playerMovement.enabled = false;  // Desactiva el movimiento
+            Debug.Log("Movimiento deshabilitado.");
+        }
+    }
+
+    public void Mobilize()
+    {
+        PlayerMovement playerMovement = GetComponent<PlayerMovement>();
+
+        if (playerMovement != null)
+        {
+            playerMovement.enabled = true;  // Activa nuevamente el movimiento
+            Debug.Log("Movimiento habilitado.");
+        }
     }
 
 }
