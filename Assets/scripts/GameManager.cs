@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
         {
             if (!player.IsHiding())
             {
-                Debug.Log(player + " boludo");
+                Debug.Log(player);
             }
             else
             {

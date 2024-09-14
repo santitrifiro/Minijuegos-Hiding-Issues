@@ -3,7 +3,30 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - luz3
+  - luz5
+  - luz1
+  - luz2
+  - luz8
+  - luz7
+  - luz4
+  - luz6
+  - fuego1
+  - fuego4
+  - fuego2
+  - perilla2
+  - perilla3
+  - perilla4
+  - fuego3
+  - perilla1
+  - Horas
+  - Minutos
+  - killer
+  - winner
+  - Ground
+  - move
+  - still
   layers:
   - Default
   - TransparentFX

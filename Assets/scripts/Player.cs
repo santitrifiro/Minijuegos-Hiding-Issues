@@ -50,6 +50,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        /*
+
         Rigidbody rb = this.AddComponent<Rigidbody>();
         rb.mass = Mass;
         rb.drag = Drag;
@@ -61,19 +64,22 @@ public class Player : MonoBehaviour
         rb.interpolation = Interpolate;
         rb.collisionDetectionMode = CollisionDetection;
 
-        PlayerCamera cameraManager = this.AddComponent<PlayerCamera>();
-        cameraManager.sensibilityX = SensibilityX;
-        cameraManager.sensibilityY = SensibilityY;
-        cameraManager.Camera = this.GetComponentInChildren<SnapCamera>().gameObject; //Agarra el snap que ata a la camara
+        //PlayerCamera cameraManager = this.AddComponent<PlayerCamera>();
+        //cameraManager.sensibilityX = SensibilityX;
+        //cameraManager.sensibilityY = SensibilityY;
+        //cameraManager.Camera = this.GetComponentInChildren<SnapCamera>().gameObject; //Agarra el snap que ata a la camara
 
-        PlayerMovement playerMovement = this.AddComponent<PlayerMovement>();
-        playerMovement.MaxSpeed = MaxSpeed;
-        playerMovement.rb = rb;
+        //PlayerMovement playerMovement = this.AddComponent<PlayerMovement>();
+        //playerMovement.MaxSpeed = MaxSpeed;
+        //playerMovement.rb = rb;
 
-        PlayerLookAt playerLookAt = this.AddComponent<PlayerLookAt>();
-        playerLookAt.CameraComponent = cam;
+        //PlayerLookAt playerLookAt = this.AddComponent<PlayerLookAt>();
+        //playerLookAt.CameraComponent = cam;
+
+        */
 
         overlay = this.GetComponentInChildren<PlayerOverlay>();
+
         return;
     }
 
