@@ -9,8 +9,6 @@ public class LuzManager : MonoBehaviour
 
     void Start()
     {
-        
-        Debug.Log(ToString());
 
         if (CompareTag("luz1") && !pm.isOn(0)) {
 

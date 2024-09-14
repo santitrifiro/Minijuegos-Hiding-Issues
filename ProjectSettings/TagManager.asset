@@ -27,6 +27,7 @@ TagManager:
   - Ground
   - move
   - still
+  - monster
   layers:
   - Default
   - TransparentFX

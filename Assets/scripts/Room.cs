@@ -22,20 +22,19 @@ public class Room : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
         Player player = other.GetComponentInParent<Player>();
 
-        Debug.Log("poteadilla " + player.name);
+        Debug.Log(player + " por entrar");
 
         if (player != null)
         {
+            Debug.Log("entraste a " + this);
             player.EnteredRoom(this);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log(other);
         Player player = other.GetComponentInParent<Player>();
 
         if (player != null)

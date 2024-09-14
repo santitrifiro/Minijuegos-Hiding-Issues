@@ -12,6 +12,10 @@ public class ParedGameManager : MonoBehaviour
 
     public GameObject pared;
 
+    public CameraManager cm;
+
+    public bool started = false;
+
     void Start()
     {
         
@@ -35,13 +39,20 @@ public class ParedGameManager : MonoBehaviour
 
         }
 
-        StartCoroutine(lanzarParedes());
+        
 
     }
 
     void Update()
     {
         
+        if (started) {
+
+            started = false;
+            StartCoroutine(lanzarParedes());
+
+        }
+
     }
 
     private IEnumerator lanzarParedes () {
@@ -49,6 +60,7 @@ public class ParedGameManager : MonoBehaviour
         for (int i = 0; i < n; i++) {
             
             GameObject pared = Instantiate(this.pared);
+            pared.transform.position = this.pared.transform.position;
 
             Renderer pared_renderer = pared.GetComponent<Renderer>();
 
@@ -76,6 +88,8 @@ public class ParedGameManager : MonoBehaviour
             Destroy(pared);
 
         }
+
+        cm.set1();
 
     }
 

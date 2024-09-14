@@ -40,8 +40,6 @@ public class Player : MonoBehaviour
 
     [Header("Player Look At")]
     public Camera cam;
-
-
     private Room currentRoom;
     private PlayerOverlay overlay;
     public bool hiding = false;
@@ -86,6 +84,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        Debug.Log("room: " + this.currentRoom);
+
         if(Input.GetKeyDown(KeyCode.U)) {
             if(hiding)
             {
@@ -123,6 +124,8 @@ public class Player : MonoBehaviour
 
     public void EnteredRoom(Room room)
     {
+
+        Debug.Log("recibido " + room);
         overlay.SetSecurityPercentage(room.GetSecurityPercentage());
         currentRoom = room;
     }

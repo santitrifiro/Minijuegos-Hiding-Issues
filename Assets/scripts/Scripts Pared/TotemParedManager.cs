@@ -5,10 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class TotemParedManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    public CameraManager cm;
+
+    public ParedPlayerManager pp;
+
+    public ParedGameManager pgm;
+
+    private bool visitado = false;
+
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -19,9 +27,9 @@ public class TotemParedManager : MonoBehaviour
 
     private void OnMouseDown () {
 
-        Debug.Log("potencio");
-
-        SceneManager.LoadScene("Pared Puzzle");
+        pgm.started = true;
+        pp.speed = 10f;
+        cm.set3();
 
     }
 

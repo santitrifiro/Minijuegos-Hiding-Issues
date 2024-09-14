@@ -8,7 +8,7 @@ public class ParedPlayerManager : MonoBehaviour
     
     public bool alive = true;
 
-    private float speed = 10f;
+    public float speed = 0f;
     private Rigidbody rb;
 
     void Start()

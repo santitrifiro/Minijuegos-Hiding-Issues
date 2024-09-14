@@ -2,69 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
 
     public double HidingTime;
     public GameObject Players;
+
+    public MonsterManager monster;
+
+    public CameraManager cm;
+
+    public TextMeshProUGUI tmp;
     private List<Player> PlayerList = new List<Player>();
     private double RemainingTime;
     private bool IsTimeOver;
 
-    // Start is called before the first frame update
     void Start()
     {
         RemainingTime = HidingTime;
         IsTimeOver = false;
         PlayerList = Players.GetComponentsInChildren<Player>().ToList();
+
+        cm.set1();
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!IsTimeOver)
         {
+            tmp.text = System.Math.Round(RemainingTime, 2).ToString();
             RemainingTime -= Time.deltaTime;
-            IsTimeOver = RemainingTime <= 0;
+            IsTimeOver = RemainingTime <= 0f;
         } else
         {
-            EndOfRound();
-            // Temporal: Resetea la ronda
-            RemainingTime = HidingTime;
-            IsTimeOver = false;
+            tmp.text = "0";
+            tmp.color = Color.red;
+            this.EndOfHide();
         }
     }
 
-    void EndOfRound()
+    void EndOfHide()
     {
-        foreach (Player player in PlayerList)
-        {
-            if (!player.IsHiding())
-            {
-                Debug.Log(player);
-            }
-            else
-            {
-                int securityPercentage = player.GetCurrentRoom().SecurityPercentage;
-                int randInt = (int)(Random.value * 100f);
-                bool dead = securityPercentage < randInt;
-                Debug.Log("Security = " + securityPercentage);
-                Debug.Log("Random = " + randInt);
-                if (dead) {
-                    Debug.Log(player + " ):");
-                }
-                else
-                {
-                    Debug.Log(player + " (:");
-                }
-            }
-        }
+
+        cm.set1();
+        monster.liberarMonstruo();
+
     }
 
-    bool SeAcaboElTiempoDeEscondite()
-    {
-        return IsTimeOver;
-    }
 }

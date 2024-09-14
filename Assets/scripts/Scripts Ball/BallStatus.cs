@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class BallStatus : MonoBehaviour
 {
+
+    public CameraManager cm;
 
     public bool alive = true;
     public bool winner = false;
@@ -26,14 +29,14 @@ public class BallStatus : MonoBehaviour
 
         if (colission.gameObject.CompareTag("killer")) {
 
-            SceneManager.LoadScene("Level");
+            this.cm.set1();
             this.alive = false;
 
         }
 
         if (colission.gameObject.CompareTag("winner")) {
 
-            SceneManager.LoadScene("Level");
+            this.cm.set1();
             this.winner = true;
 
         }

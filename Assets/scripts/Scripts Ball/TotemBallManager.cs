@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class TotemBallManager : MonoBehaviour
 {
+
+    public CameraManager cm;
+    public BallMovementManager bm;
+
+    private bool visitado = false;
+
     void Start()
     {
         
@@ -17,7 +23,13 @@ public class TotemBallManager : MonoBehaviour
 
     private void OnMouseDown () {
 
-        SceneManager.LoadScene("Ball Puzzle");
+        if (!visitado) {
+
+            visitado = true;
+            cm.set2();
+            bm.speed = 4f;
+
+        }
 
     }
 
